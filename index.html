@@ -26,7 +26,7 @@ td:before {
     border-bottom: 2px solid #F00;
     width: 100%;
 }
-.strike:before {
+td.strike:before {
     content: " ";
 }
 button {
@@ -135,7 +135,7 @@ var cards = document.getElementsByTagName("td");
 
 for (var i = 0; i < cards.length; i++) {
     cards[i].onclick = function(e) {
-        if (!this.classList) {
+        if (!this.parentElement.classList.contains("struck")) {
             var boxesInRow = this.parentElement.children;
             for (var j = 0; j < boxesInRow.length; j++) {
                 boxesInRow[j].classList.toggle("strike");
@@ -169,21 +169,23 @@ function submit() {
     var boxes = document.querySelectorAll("tr > td:not(:first-child)");
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].onclick = function(e) {
-            if (!this.parentElement.firstElementChild.classList.contains("strike")){
+            if (!this.parentElement.firstElementChild.classList.contains("strike") or this.textContent == "✓"){
                 var card = this.parentElement.firstElementChild;
-                card.classList.toggle("strike");
                 switch (this.textContent) {
                     case "":
                         this.textContent = "✗";
                         card.classList.remove("strike");
+                        this.parentElement.classList.remove("struck");
                         break;
                     case "✗":
                         this.textContent = "✓";
                         card.classList.add("strike");
+                        this.parentElement.classList.add("struck");
                         break;
                     case "✓":
                         this.textContent = "";
                         card.classList.remove("strike");
+                        this.parentElement.classList.remove("struck");
                 }
             }
         }
