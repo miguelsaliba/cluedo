@@ -22,7 +22,7 @@ td:before {
     position: absolute;
     top: 50%;
     left: 0%;
-    border-bottom: 2px solid #F00;
+    border-bottom: 4px solid #F00;
     width: 100%;
 }
 td.strike:before {
