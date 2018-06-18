@@ -86,7 +86,11 @@ function submit() {
                         found = false;
                 }
                 if (found) {
-                    this.parentElement.firstElementChild.style.fontWeight = "bold";
+                    this.parentElement.firstElementChild.style.fontWeight = "bolder";
+                    this.parentElement.firstElementChild.style.color = "green";
+                } else {
+                    this.parentElement.firstElementChild.style.fontWeight = "normal";
+                    this.parentElement.firstElementChild.style.color = "black";
                 }
             }
         }
