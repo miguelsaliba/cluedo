@@ -1,4 +1,6 @@
+var players;
 var cards = document.getElementsByTagName("td");
+showTextboxes();
 
 for (var i = 0; i < cards.length; i++) {
     cards[i].onclick = function(e) {
@@ -12,21 +14,31 @@ for (var i = 0; i < cards.length; i++) {
 };
 
 function showTextboxes() {
-
+    var oldTextboxes = document.getElementsByTagName("input");
+    try {
+        while (true) {
+            oldTextboxes[0].remove();
+        }
+    } catch(err) {};
+    players = document.getElementsByTagName("select")[0].value;
+    for (var i = 0; i < players; i++) {
+        var textbox = document.createElement("input");
+        textbox.setAttribute("type", "text");
+        textbox.placeholder = "Player " + String(i + 1);
+        document.getElementById("hide").insertBefore(textbox, document.getElementsByTagName("button")[0]);
+    }
 }
 
-var players;
 function submit() {
     players = document.getElementsByTagName("select")[0].value;
-    var hide = document.getElementsByClassName("hide");
-    for (var i = 0; i < hide.length; i++) {
-        hide[i].style.display = "none";
-    };
+    var hide = document.getElementById("hide");
+    hide.style.display = "none";
 
     var tr = document.querySelectorAll("tr:not(.title)");
+    var texts = document.getElementsByTagName("input");
     for (var i = 0; i < players; i++) {
         var td = document.createElement("th");
-        var text = document.createTextNode("P" + String(i+1));
+        var text = document.createTextNode(texts[i].value);
         td.appendChild(text);
         tr[0].appendChild(td);
     };

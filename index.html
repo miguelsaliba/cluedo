@@ -4,15 +4,17 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <p class="hide">Number of players (other than you): </p>
-    <select class="hide" onchange="showTextboxes()">
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-    <br>
-    <button class="hide" onclick="submit()">submit</button>
+    <div id="hide">
+        <p>Number of players (other than you): </p>
+        <select onchange="showTextboxes()">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <br>
+        <button onclick="submit()">submit</button>
+    </div>
     <table>
         <tr>
             <th></th>
