@@ -1,3 +1,7 @@
+html {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
 p {
   display: inline;
 }
@@ -6,10 +10,11 @@ table {
     width: 100%;
     height: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #ddd;
 }
 
 td {
@@ -41,4 +46,16 @@ button {
 
 input {
     margin: 3px;
+}
+
+#title {
+    background-color: #333;
+    color: white;
+}
+
+.title {
+    background-color: lightblue !important;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
 }

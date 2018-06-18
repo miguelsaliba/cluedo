@@ -49,26 +49,44 @@ function submit() {
         }
     };
 
+    var subtitles = document.getElementsByClassName("subtitle");
+    for (var i = 0; i < subtitles.length; i++) {
+        subtitles[i].colSpan = Number(players) + 1;
+    }
     var boxes = document.querySelectorAll("tr > td:not(:first-child)");
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].onclick = function(e) {
-            if (!this.parentElement.firstElementChild.classList.contains("strike") || this.textContent == "✓"){
+            if (!this.parentElement.firstElementChild.classList.contains("strike") || this.style.backgroundColor == "forestgreen"){
                 var card = this.parentElement.firstElementChild;
-                switch (this.textContent) {
+                var found;
+                switch (this.style.backgroundColor) {
                     case "":
-                        this.textContent = "✗";
+                        this.style.backgroundColor = "red";
                         card.classList.remove("strike");
                         this.parentElement.classList.remove("struck");
+                        var siblings = this.parentElement.children;
+                        var redBoxes = 0;
+                        for (var i = 1; i < siblings.length; i++) {
+                            if (siblings[i].style.backgroundColor == "red") {
+                                redBoxes++;
+                            };
+                        }
+                        redBoxes == players ? found = true : found = false;
                         break;
-                    case "✗":
-                        this.textContent = "✓";
+                    case "red":
+                        this.style.backgroundColor = "forestgreen";
                         card.classList.add("strike");
                         this.parentElement.classList.add("struck");
+                        found = false;
                         break;
-                    case "✓":
-                        this.textContent = "";
+                    case "forestgreen":
+                        this.style.backgroundColor = "";
                         card.classList.remove("strike");
                         this.parentElement.classList.remove("struck");
+                        found = false;
+                }
+                if (found) {
+                    this.parentElement.firstElementChild.style.fontWeight = "bold";
                 }
             }
         }
