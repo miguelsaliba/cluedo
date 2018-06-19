@@ -59,38 +59,41 @@ function submit() {
             if (!this.parentElement.firstElementChild.classList.contains("strike") || this.style.backgroundColor == "forestgreen"){
                 var card = this.parentElement.firstElementChild;
                 var found;
-                switch (this.style.backgroundColor) {
-                    case "":
-                        this.style.backgroundColor = "red";
-                        card.classList.remove("strike");
-                        this.parentElement.classList.remove("struck");
-                        var siblings = this.parentElement.children;
-                        var redBoxes = 0;
-                        for (var i = 1; i < siblings.length; i++) {
-                            if (siblings[i].style.backgroundColor == "red") {
-                                redBoxes++;
-                            };
-                        }
-                        redBoxes == players ? found = true : found = false;
-                        break;
-                    case "red":
-                        this.style.backgroundColor = "forestgreen";
-                        card.classList.add("strike");
-                        this.parentElement.classList.add("struck");
-                        found = false;
-                        break;
-                    case "forestgreen":
-                        this.style.backgroundColor = "";
-                        card.classList.remove("strike");
-                        this.parentElement.classList.remove("struck");
-                        found = false;
+                var siblings = this.parentElement.children;
+                if (this.style.backgroundColor == "" && this.textContent != "?") {
+                    this.style.backgroundColor = "red";
+                    var redBoxes = 0;
+                    for (var i = 1; i < siblings.length; i++) {
+                        if (siblings[i].style.backgroundColor == "red") {
+                            redBoxes++;
+                        };
+                    }
+                    redBoxes == players ? found = true : found = false;
+                } else if (this.style.backgroundColor == "red") {
+                    for (var i = 1; i < siblings.length; i++) {
+                        siblings[i].classList.add("red");
+                    }
+                    this.style.backgroundColor = "forestgreen";
+                    card.classList.add("strike");
+                    this.parentElement.classList.add("struck");
+                    found = false;
+                } else if (this.style.backgroundColor == "forestgreen") {
+                    for (var i = 1; i < siblings.length; i++) {
+                        siblings[i].classList.remove("red");
+                    }
+                    this.style.backgroundColor = "";
+                    this.textContent = "?"
+                    card.classList.remove("strike");
+                    this.parentElement.classList.remove("struck");
+                    found = false;
+                } else {
+                    this.textContent = "";
+                    found = false;
                 }
                 if (found) {
-                    this.parentElement.firstElementChild.style.fontWeight = "bolder";
-                    this.parentElement.firstElementChild.style.color = "green";
+                    this.parentElement.firstElementChild.classList.add("found");
                 } else {
-                    this.parentElement.firstElementChild.style.fontWeight = "normal";
-                    this.parentElement.firstElementChild.style.color = "black";
+                    this.parentElement.firstElementChild.classList.remove("found");
                 }
             }
         }
