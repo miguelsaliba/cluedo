@@ -86,6 +86,9 @@ function submit() {
                     card.classList.remove("strike");
                     this.parentElement.classList.remove("struck");
                     found = false;
+                } else if (this.textContent == "?"){
+                    this.textContent = "·";
+                    found = false;
                 } else {
                     this.textContent = "";
                     found = false;
