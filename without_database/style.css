@@ -40,12 +40,10 @@ td.strike:before {
     content: " ";
 }
 
-button {
-    margin-bottom: 10px;
-}
-
 input {
     margin: 3px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 #title {
@@ -57,7 +55,7 @@ input {
     background-color: lightblue !important;
 }
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f8f8f8;
 }
 
 .red {

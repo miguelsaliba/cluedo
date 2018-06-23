@@ -60,7 +60,7 @@ function submit() {
                 var card = this.parentElement.firstElementChild;
                 var found;
                 var siblings = this.parentElement.children;
-                if (this.style.backgroundColor == "" && this.textContent != "?") {
+                if (this.style.backgroundColor == "") {
                     this.style.backgroundColor = "red";
                     var redBoxes = 0;
                     for (var i = 1; i < siblings.length; i++) {
@@ -81,16 +81,15 @@ function submit() {
                     for (var i = 1; i < siblings.length; i++) {
                         siblings[i].classList.remove("red");
                     }
-                    this.style.backgroundColor = "";
-                    this.textContent = "?"
+                    this.style.backgroundColor = "lightgray";
                     card.classList.remove("strike");
                     this.parentElement.classList.remove("struck");
                     found = false;
-                } else if (this.textContent == "?"){
-                    this.textContent = "·";
+                } else if (this.style.backgroundColor == "lightgray"){
+                    this.style.backgroundColor = "yellow";
                     found = false;
                 } else {
-                    this.textContent = "";
+                    this.style.backgroundColor = "";
                     found = false;
                 }
                 if (found) {
